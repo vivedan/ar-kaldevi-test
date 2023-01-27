@@ -18,12 +18,17 @@
           
           let margin = 0.5;
           let color = 'black';
+          let lineThickness = 0.02;
+          let fontSize = 5;
+          let fontPadding = 0.1;
+          
+          //HEIGHT
           
           let lineHeight = document.createElement('a-entity');
           lineHeight.setAttribute('geometry', {
             primitive: 'plane',
             height: height,
-            width: 0.02,
+            width: lineThickness,
           });
           lineHeight.setAttribute('material', {
             color: color,
@@ -34,12 +39,41 @@
             value: height + ' m',
             align: 'left',
             anchor: 'left',
-            xOffset: 0.1,
-            width: 5,
+            xOffset: fontPadding,
+            width: fontSize,
             color: color,
           })
           
-          measurements.appendChild()
+          //WIDTH
+          
+          let lineWidth = document.createElement('a-entity');
+          lineWidth.setAttribute('geometry', {
+            primitive: 'plane',
+            height: width,
+            width: lineThickness,
+          });
+          lineWidth.setAttribute('material', {
+            color: color,
+          })
+          lineWidth.setAttribute('position', {x: width/2, y: -height/2, z: depth/2 });
+          
+          lineWidth.object3D.rotation.z = THREE.MathUtils.degToRad(-90);
+          lineWidth.object3D.rotation.x = THREE.MathUtils.degToRad(-90);
+          
+          lineWidth.setAttribute('text', {
+            value: width + ' m',
+            align: 'left',
+            anchor: 'left',
+            xOffset: fontPadding,
+            width: fontSize,
+            color: color,
+          })
+          
+          //APPENDS
+          
+          measurements.appendChild(lineHeight);
+          measurements.appendChild(lineWidth);
+          //measurements.appendChild(lineDepth);
           
           el.appendChild(measurements);
           
@@ -47,7 +81,8 @@
       })
     </script>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" measurement></a-box>
+      a
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" scale="0.5 1 2" measurement></a-box>
       <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
       <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
