@@ -14,17 +14,34 @@
           let height = el.getAttribute('scale').y;
           let depth = el.getAttribute('scale').z;
           
+          let measurements = document.createElement('a-entity');
+          
           let margin = 0.5;
+          let color = 'black';
           
           let lineHeight = document.createElement('a-entity');
           lineHeight.setAttribute('geometry', {
             primitive: 'plane',
             height: height,
-            width: 0.1,
+            width: 0.02,
           });
-          lineHeight.setAttribute('position', {x: width/2, z: depth/2 + margin})
+          lineHeight.setAttribute('material', {
+            color: color,
+          })
+          lineHeight.setAttribute('position', {x: width/2 + margin, y: 0, z: depth/2});
           
-          el.appendChild(line);
+          lineHeight.setAttribute('text', {
+            value: height + ' m',
+            align: 'left',
+            anchor: 'left',
+            xOffset: 0.1,
+            width: 5,
+            color: color,
+          })
+          
+          measurements.appendChild()
+          
+          el.appendChild(measurements);
           
         }
       })
