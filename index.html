@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
   </head>
   <body>
     <script>
@@ -218,6 +219,7 @@
     
     </script>
     
+    
     <script>
       AFRAME.registerComponent('shadow-material', {
         init: function(){
@@ -278,11 +280,11 @@
             // Go over the submeshes and modify materials we want.
             obj.traverse(node => {
               if(node.isMesh){
-                if(this.matIndex < this.matArray.length){
+                if(this.matIndex < this.matArray.length -1){
                   this.matIndex += 1;
                   node.material.map = this.matArray[this.matIndex];
                 }else{
-                  this.matIndex = 1;
+                  this.matIndex = 0;
                   node.material.map = this.matArray[this.matIndex];
                 }
               }
@@ -317,6 +319,7 @@
       <a-light type="point" color="white" position="0 5 0"></a-light>
       <a-light type="point" color="white" position="-5 0 0"></a-light>
       <a-light type="point" color="white" position="5 0 0"></a-light>
+      <a-light type="point" color="white" position="0 0 -5"></a-light>
       <a-light type="ambient" color="white"></a-light>
       <a-sky color="#ECECEC"></a-sky>
       <a-entity id="plane" position="0 0.43 -2" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
