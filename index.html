@@ -5,7 +5,7 @@
   </head>
   <body>
     <script>
-      AFRAME.registerComponent('measurement', {
+      AFRAME.registerComponent('measurement-scale', {
         init: function(){
           let data = this.data;
           let el = this.el;
@@ -107,7 +107,7 @@
     </script>
     <script>
     
-      AFRAME.registerComponent('boundingbox', {
+      AFRAME.registerComponent('measurement', {
         init: function(){
           let el = this.el;
           el.addEventListener('model-loaded', () => {
@@ -121,7 +121,97 @@
             boundingBox.getSize(assetSize);
             console.log(assetSize);
             
-            el.setAttribute('measurement')
+            let width = assetSize.x.toFixed(2);
+            let height = assetSize.y.toFixed(2);
+            let depth = assetSize.z.toFixed(2);
+
+            let measurements = document.createElement('a-entity');
+
+            let margin = 0.2;
+            let color = 'black';
+            let lineThickness = 0.02;
+            let fontSize = 5;
+            let fontPadding = 0.1;
+
+            //HEIGHT
+
+            let lineHeight = document.createElement('a-entity');
+            lineHeight.setAttribute('geometry', {
+              primitive: 'plane',
+              height: height,
+              width: lineThickness,
+            });
+            lineHeight.setAttribute('material', {
+              color: color,
+            })
+            lineHeight.setAttribute('position', {x: width/2 + margin, y: 0, z: - depth/2});
+
+            lineHeight.setAttribute('text', {
+              value: height + ' m',
+              align: 'left',
+              anchor: 'left',
+              xOffset: fontPadding,
+              width: fontSize,
+              color: color,
+            })
+
+            //WIDTH
+
+            let lineWidth = document.createElement('a-entity');
+            lineWidth.setAttribute('geometry', {
+              primitive: 'plane',
+              height: width,
+              width: lineThickness,
+            });
+            lineWidth.setAttribute('material', {
+              color: color,
+            })
+            lineWidth.setAttribute('position', {x: 0, y: -height/2, z: depth/2 + margin});
+
+            //lineWidth.object3D.rotation.z = THREE.MathUtils.degToRad(-90);
+            lineWidth.object3D.rotation.x = THREE.MathUtils.degToRad(-90);
+
+            lineWidth.setAttribute('text', {
+              value: width + ' m',
+              align: 'right',
+              anchor: 'right',
+              xOffset: - fontPadding,
+              width: fontSize,
+              color: color,
+            })
+
+            //DEPTH
+
+            let lineDepth = document.createElement('a-entity');
+            lineDepth.setAttribute('geometry', {
+              primitive: 'plane',
+              height: depth,
+              width: lineThickness,
+            });
+            lineDepth.setAttribute('material', {
+              color: color,
+            })
+            lineDepth.setAttribute('position', {x: width/2 + margin, y: -height/2, z: 0});
+
+            lineDepth.object3D.rotation.x = THREE.MathUtils.degToRad(-90);
+
+            lineDepth.setAttribute('text', {
+              value: depth + ' m',
+              align: 'left',
+              anchor: 'left',
+              xOffset: fontPadding,
+              width: fontSize,
+              color: color,
+            })
+
+            //APPENDS
+
+            measurements.appendChild(lineHeight);
+            measurements.appendChild(lineWidth);
+            measurements.appendChild(lineDepth);
+
+            el.appendChild(measurements);
+            
           })
         }
       })
@@ -133,15 +223,15 @@
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR1.glb?v=1674861631502"></a-asset-item>
       </a-assets>
       
-      <a-gltf-model id="sorolla" src="#sorollaAsset" boundingbox></a-gltf-model>
+      <a-gltf-model id="sorolla" src="#sorollaAsset" measurement></a-gltf-model>
       
-      <a-entity position="-1 0.5 -3" rotation="0 45 0" measurement>
+      <a-entity position="-1 0.5 -3" rotation="0 45 0" measurement-scale>
         <a-box color="#4CC3D9" scale="0.5 1 2"></a-box>
       </a-entity>
-      <a-entity position="0 1.25 -5" measurement>
+      <a-entity position="0 1.25 -5" measurement-scale>
         <a-sphere radius="1.25" color="#EF2D5E"></a-sphere>
       </a-entity>
-      <a-entity position="1 0.75 -3" measurement>
+      <a-entity position="1 0.75 -3" measurement-scale>
         <a-cylinder radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
       </a-entity>
       
