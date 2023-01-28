@@ -239,11 +239,18 @@
     
       AFRAME.registerComponent('update-materials', {
         schema: {
-          texture: {type: 'string', default: 'https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631'}
+          texture: {type: 'array', default: 'https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631, https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeOrange.jpg?v=1674927278317, https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeBlue.jpg?v=1674927287672'}
         },
-        update: function () {
-          var tex = new THREE.TextureLoader().load(this.data.texture);
-          tex.flipY = false; // for glTF models.
+        
+        let tex1, tex2, tex3;
+        
+        init: function(){
+          tex1 = new THREE.TextureLoader().load(this.data.texture[0]);
+          tex2 = new THREE.TextureLoader().load(this.data.texture[1]);
+          tex3 = new THREE.TextureLoader().load(this.data.texture[2]);
+          tex1.flipY = false;
+          tex2.flipY = false;
+          tex3.flipY = false;
           // Wait for model to load.
           this.el.addEventListener('model-loaded', () => {
             // Grab the mesh / scene.
@@ -254,14 +261,27 @@
                 //console.log(node)
                 //node.material.shader = 'flat';
                 node.material.color.set('white');
-                node.material.map = tex;
+                node.material.map = tex1;
               }
                 
               
             });
           });
+        },
+        
+        update: function () {
+          
           this.el.addEventListener('updateMaterial', () => {
-            
+            // Grab the mesh / scene.
+            const obj = this.el.getObject3D('mesh');
+            // Go over the submeshes and modify materials we want.
+            obj.traverse(node => {
+              if(node.isMesh){
+                node.material.map = tex2;
+              }
+                
+              
+            });
           })
         }
       })
@@ -273,7 +293,7 @@
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635"></a-asset-item>
       </a-assets>
       
-      <a-gltf-model id="sorolla" position="0 1 -2" src="#sorollaAsset" shadow="cast: true" measurement update-materials="texture: https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631"></a-gltf-model>
+      <a-gltf-model id="sorolla" position="0 1 -2" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
       
       <!--<a-entity position="-1 0.5 -3" rotation="0 45 0" measurement-scale>
         <a-box color="#4CC3D9" scale="0.5 1 2"></a-box>
