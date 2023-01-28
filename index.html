@@ -27,16 +27,20 @@
       
       <a-entity mindar-image-target="targetIndex: 0">
         <a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>
-        <a-gltf-model id="sorolla" position="0 2 -2" rotation="90 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
+        <a-entity position="0 0 0.6" rotation="90 0 0">
+          <a-gltf-model id="sorolla" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
+
+          <a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
+          <a-light type="point" color="white" position="0 5 0"></a-light>
+          <a-light type="point" color="white" position="-5 0 0"></a-light>
+          <a-light type="point" color="white" position="5 0 0"></a-light>
+          <a-light type="point" color="white" position="0 0 -5"></a-light>
+          <a-light type="ambient" color="white"></a-light>
+          <a-entity id="plane" position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
+        </a-entity>
       </a-entity>
       
-      <a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
-      <a-light type="point" color="white" position="0 5 0"></a-light>
-      <a-light type="point" color="white" position="-5 0 0"></a-light>
-      <a-light type="point" color="white" position="5 0 0"></a-light>
-      <a-light type="point" color="white" position="0 0 -5"></a-light>
-      <a-light type="ambient" color="white"></a-light>
-      <a-entity id="plane" position="0 0.43 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
+      
     </a-scene>
     
     <div id="buttonBand">
