@@ -105,12 +105,26 @@
         }
       })
     </script>
+    <script>
+    
+      AFRAME.registerComponent('boundingbox', {
+        init: function(){
+          let el = this.el;
+          let assetSize = new THREE.Vector3();
+          let boundingBox = new THREE.Box3().setFromObject(el.object3D)
+          boundingBox.getSize(assetSize)
+          console.log(assetSize);
+        }
+      })
+    
+    </script>
+    
     <a-scene>
       <a-assets>
-        <a-asset-item id="sorolla" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR1.glb?v=1674861631502"></a-asset-item>
+        <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR1.glb?v=1674861631502"></a-asset-item>
       </a-assets>
       
-      <a-gltf-model src="#sorolla"></a-gltf-model>
+      <a-gltf-model id="sorolla" src="#sorollaAsset" boundingbox></a-gltf-model>
       
       <a-entity position="-1 0.5 -3" rotation="0 45 0" measurement>
         <a-box color="#4CC3D9" scale="0.5 1 2"></a-box>
@@ -125,5 +139,11 @@
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
+    
+    <script>
+    
+      
+      
+    </script>
   </body>
 </html>
