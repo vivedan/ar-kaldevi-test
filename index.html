@@ -110,10 +110,17 @@
       AFRAME.registerComponent('boundingbox', {
         init: function(){
           let el = this.el;
-          let assetSize = new THREE.Vector3();
-          let boundingBox = new THREE.Box3().setFromObject(el.object3D)
-          boundingBox.getSize(assetSize)
-          console.log(assetSize);
+          el.addEventListener('model-loaded', () => {
+          
+            let assetSize = new THREE.Vector3();
+
+            console.log(el);
+
+            let boundingBox = new THREE.Box3().setFromObject(el.object3D);
+
+            boundingBox.getSize(assetSize);
+            console.log(assetSize);
+          })
         }
       })
     
