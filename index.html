@@ -219,11 +219,28 @@
     </script>
     
     <script>
+      AFRAME.registerComponent('shadow-material', {
+        init: function(){
+          //console.log('shadow-material');
+          let el = this.el;
+          let self = this;
+          let mesh = el.getObject3D('mesh');
+          console.log(mesh);
+          if (!mesh){return;}
+          mesh.material = new THREE.ShadowMaterial();
+          mesh.material.opacity = 1.0;
+
+
+        }
+      });
+    </script>
+    
+    <script>
     
       AFRAME.registerComponent('update-materials', {
         init: function () {
-          //var tex = new THREE.TextureLoader().load('https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631');
-          //tex.flipY = false; // for glTF models.
+          var tex = new THREE.TextureLoader().load('https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631');
+          tex.flipY = false; // for glTF models.
           // Wait for model to load.
           this.el.addEventListener('model-loaded', () => {
             // Grab the mesh / scene.
@@ -231,10 +248,10 @@
             // Go over the submeshes and modify materials we want.
             obj.traverse(node => {
               if(node.isMesh){
-                console.log(node)
-                node.material.shader = 'flat';
-                //node.material.color.set('red');
-                node.material.src = new THREE.TextureLoader().load('https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631');
+                //console.log(node)
+                //node.material.shader = 'flat';
+                node.material.color.set('white');
+                node.material.map = tex;
               }
                 
               
@@ -245,7 +262,7 @@
     
     </script>
     
-    <a-scene renderer="colorManagement: true;">
+    <a-scene renderer="colorManagement: true;" shadow="type: pcfsoft">
       <a-assets>
         <img id="sorollaTex1" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631">
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635"></a-asset-item>
@@ -265,6 +282,10 @@
       
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>-->
       <a-light color="white" position="-1 1 0"></a-light>
+      <!-- Blue point light, 5 meters in the air. -->
+      <a-light type="point" color="white" position="0 5 0"></a-light>
+      <a-light type="point" color="white" position="-5 0 0"></a-light>
+      <a-light type="point" color="white" position="5 0 0"></a-light>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
     
