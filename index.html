@@ -246,13 +246,21 @@
             this.measurements.appendChild(title);
             this.measurements.appendChild(subtitle);
 
-            
+            this.visible = false;
             
           })
         },
         update: function(){
           this.el.addEventListener('toggleInfo', ()=>{
-            this.el.appendChild(this.measurements);
+            if(this.visible){
+              console.log(this.el.object3D)
+              this.el.removeObject3D(this.measurements);
+              this.visible = false;
+            }else{
+              this.el.appendChild(this.measurements);
+              this.visible = true;
+            }
+            
           })
         }
       })
