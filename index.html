@@ -12,12 +12,12 @@
   </head>
   <body>
     
-    <!--<script src="measurement.js"></script>
+    <script src="measurement.js"></script>
     <script src="shadow-material.js"></script>
-    <script src="update-materials.js"></script>-->
+    <script src="update-materials.js"></script>
     
     
-    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/ff6799f3-e4c0-4e96-9a8f-868f4cd1e900/targets.mind?v=1674297552850" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" shadow="type: pcfsoft">
+    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targets.mind?v=1674941868358; warmupTolerance: 1; missTolerance: 10; filterMinCF:0.0001;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" shadow="type: pcfsoft">
       <a-assets>
         <img id="card" src="https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/Tracker%20Silla.png?v=1674941824262" crossorigin="anonymous"/>
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635" crossorigin="anonymous"></a-asset-item>
@@ -27,39 +27,27 @@
       
       <a-entity mindar-image-target="targetIndex: 0">
         <a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>
-        <!--<a-gltf-model id="sorolla" position="0 1 -2" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>-->
+        <a-gltf-model id="sorolla" position="0 2 -2" rotation="90 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
       </a-entity>
       
-      <!--<a-entity position="-1 0.5 -3" rotation="0 45 0" measurement-scale>
-        <a-box color="#4CC3D9" scale="0.5 1 2"></a-box>
-      </a-entity>
-      <a-entity position="0 1.25 -5" measurement-scale>
-        <a-sphere radius="1.25" color="#EF2D5E"></a-sphere>
-      </a-entity>
-      <a-entity position="1 0.75 -3" measurement-scale>
-        <a-cylinder radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      </a-entity>
-      
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>-->
-      <!--<a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
+      <a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
       <a-light type="point" color="white" position="0 5 0"></a-light>
       <a-light type="point" color="white" position="-5 0 0"></a-light>
       <a-light type="point" color="white" position="5 0 0"></a-light>
       <a-light type="point" color="white" position="0 0 -5"></a-light>
       <a-light type="ambient" color="white"></a-light>
-      <a-sky color="#ECECEC"></a-sky>
-      <a-entity id="plane" position="0 0.43 -2" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>-->
+      <a-entity id="plane" position="0 0.43 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
     </a-scene>
     
-    <!--<div id="buttonBand">
+    <div id="buttonBand">
       <div id="infoButton" class="button" style="background: red;"></div>
       <div id="linkButton" class="button" style="background: white;"></div>
       <div id="materialButton" class="button" style="background: blue;"></div>
       <div id="scaleButton" class="button" style="background: yellow;"></div>
-    </div>-->
+    </div>
     
     
-    <!--<script>
+    <script>
     
       let materialButton = document.getElementById('materialButton');
       let infoButton = document.getElementById('infoButton');
@@ -77,6 +65,6 @@
         window.open('https://ortopedia.kaldevi.com/producto/silla-de-ruedas-electrica-sorolla/', '_blank');
       })
       
-    </script>-->
+    </script>
   </body>
 </html>
