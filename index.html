@@ -3,6 +3,8 @@
   <head>
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <script>
@@ -130,7 +132,7 @@
             let height = assetSize.y.toFixed(2);
             let depth = assetSize.z.toFixed(2);
 
-            let measurements = document.createElement('a-entity');
+            this.measurements = document.createElement('a-entity');
 
             let margin = 0.2;
             let color = 'white';
@@ -237,15 +239,20 @@
 
             //APPENDS
 
-            measurements.appendChild(lineHeight);
-            measurements.appendChild(lineWidth);
-            measurements.appendChild(lineDepth);
+            this.measurements.appendChild(lineHeight);
+            this.measurements.appendChild(lineWidth);
+            this.measurements.appendChild(lineDepth);
             
-            measurements.appendChild(title);
-            measurements.appendChild(subtitle);
+            this.measurements.appendChild(title);
+            this.measurements.appendChild(subtitle);
 
-            el.appendChild(measurements);
             
+            
+          })
+        },
+        update: function(){
+          this.el.addEventListener('toggleInfo', ()=>{
+            this.el.appendChild(this.measurements);
           })
         }
       })
@@ -306,7 +313,7 @@
         
         update: function () {
           
-          this.el.addEventListener('updateMaterial', () => {
+          this.el.addEventListener('toggleMaterial', () => {
             
             // Grab the mesh / scene.
             const obj = this.el.getObject3D('mesh');
@@ -359,15 +366,26 @@
     </a-scene>
     
     <div id="buttonBand">
-      <div id="materialButton" class="button" style="position: absolute; z-index: 100; top: 0; left: 0; width: 100px; height: 100px; background: red; cursor: pointer;"></div>
+      <div id="infoButton" class="button" style="background: red;"></div>
+      <div id="linkButton" class="button" style="background: white;"></div>
+      <div id="materialButton" class="button" style="background: blue;"></div>
+      <div id="scaleButton" class="button" style="background: yellow;"></div>
     </div>
     
     
     <script>
     
       let materialButton = document.getElementById('materialButton');
+      let infoButton = document.getElementById('infoButton');
+      let linkButton = document.getElementById('linkButton');
+      let scaleButton = document.getElementById('scaleButton');
+      
+      let gltf = document.getElementById('sorolla');
       materialButton.addEventListener('click', ()=>{
-        document.getElementById('sorolla').emit('updateMaterial')
+        gltf.emit('toggleMaterial')
+      });
+      infoButton.addEventListener('click', ()=>{
+        gltf.emit('toggleInfo');
       })
       
     </script>
