@@ -111,7 +111,7 @@
       AFRAME.registerComponent('measurement', {
         schema:{
           title: {type: 'string', default: 'Sorolla'},
-          subtitle: {type: 'string', default: 'Silla eléctrica plegable'},
+          subtitle: {type: 'string', default: 'Silla electrica plegable'},
         },
         init: function(){
           let el = this.el;
@@ -133,8 +133,8 @@
             let measurements = document.createElement('a-entity');
 
             let margin = 0.2;
-            let color = 'black';
-            let lineThickness = 0.02;
+            let color = 'white';
+            let lineThickness = 0.005;
             let fontSize = 5;
             let fontPadding = 0.1;
 
@@ -212,15 +212,27 @@
             //TITLES
             
             let title = document.createElement('a-entity');
-            title.setAttribute('position', {x: -width/2, y: 0, z: depth/2});
+            title.setAttribute('position', {x: -width/2, y: height/2 - margin, z: depth/2});
             title.object3D.rotation.y = THREE.MathUtils.degToRad(90);
             title.setAttribute('text', {
               value: this.data.title,
               align: 'right',
               anchor: 'right',
-              xOffset: -fontPadding,
-              width: fontSize,
-              color: color,
+              width: 10,
+              color: 'lightblue',
+              font: 'https://cdn.aframe.io/fonts/Exo2SemiBold.fnt',
+            })
+            
+            let subtitle = document.createElement('a-entity');
+            subtitle.setAttribute('position', {x: -width/2, y: 0, z: depth/2});
+            subtitle.object3D.rotation.y = THREE.MathUtils.degToRad(90);
+            subtitle.setAttribute('text', {
+              value: this.data.subtitle,
+              align: 'right',
+              anchor: 'right',
+              width: 4,
+              color: 'lightblue',
+              font: 'https://cdn.aframe.io/fonts/Aileron-Semibold.fnt',
             })
 
             //APPENDS
@@ -230,6 +242,7 @@
             measurements.appendChild(lineDepth);
             
             measurements.appendChild(title);
+            measurements.appendChild(subtitle);
 
             el.appendChild(measurements);
             
@@ -345,7 +358,10 @@
       <a-entity id="plane" position="0 0.43 -2" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
     </a-scene>
     
-    <div id="materialButton" class="button" style="position: absolute; z-index: 100; top: 0; left: 0; width: 100px; height: 100px; background: red; cursor: pointer;"></div>
+    <div id="buttonBand">
+      <div id="materialButton" class="button" style="position: absolute; z-index: 100; top: 0; left: 0; width: 100px; height: 100px; background: red; cursor: pointer;"></div>
+    </div>
+    
     
     <script>
     

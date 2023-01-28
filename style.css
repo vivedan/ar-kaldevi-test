@@ -1,0 +1,10 @@
+.button{
+  position: absolute; 
+  z-index: 100; 
+  top: 0; 
+  left: 0; 
+  width: 100px; 
+  height: 100px; 
+  background: red; 
+  cursor: pointer;
+}
