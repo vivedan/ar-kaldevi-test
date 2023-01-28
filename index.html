@@ -239,10 +239,10 @@
     
       AFRAME.registerComponent('update-materials', {
         schema: {
-          texture: {type: 'string', default: 'Hello, World!'}
+          texture: {type: 'string', default: 'https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631'}
         },
-        init: function () {
-          var tex = new THREE.TextureLoader().load('https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631');
+        update: function () {
+          var tex = new THREE.TextureLoader().load(this.data.texture);
           tex.flipY = false; // for glTF models.
           // Wait for model to load.
           this.el.addEventListener('model-loaded', () => {
@@ -260,6 +260,9 @@
               
             });
           });
+          this.el.addEventListener('updateMaterial', () => {
+            
+          })
         }
       })
     
@@ -267,11 +270,10 @@
     
     <a-scene renderer="colorManagement: true;" shadow="type: pcfsoft">
       <a-assets>
-        <img id="sorollaTex1" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631">
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635"></a-asset-item>
       </a-assets>
       
-      <a-gltf-model position="0 1 -2" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
+      <a-gltf-model id="sorolla" position="0 1 -2" src="#sorollaAsset" shadow="cast: true" measurement update-materials="texture: https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631"></a-gltf-model>
       
       <!--<a-entity position="-1 0.5 -3" rotation="0 45 0" measurement-scale>
         <a-box color="#4CC3D9" scale="0.5 1 2"></a-box>
@@ -298,8 +300,8 @@
     <script>
     
       let materialButton = document.getElementById('materialButton');
-      materialButton.addEventListener('click', {
-        
+      materialButton.addEventListener('click', ()=>{
+        document.getElementById('sorolla').emit('updateMaterial')
       })
       
     </script>
