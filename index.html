@@ -247,21 +247,16 @@
             this.measurements.appendChild(subtitle);
 
             this.el.appendChild(this.measurements);
-            this.measurements.
+            this.measurements.setAttribute('visible', false);
             
           })
         },
         update: function(){
           this.el.addEventListener('toggleInfo', ()=>{
-            if(this.visibility){
-              //console.log(this.measurements)
-              this.measurements.parentNode.removeChild(this.measurements);
-              this.visibility = false;
-              console.log(this.visibility);
+            if(this.measurements.object3D.visible){
+              this.measurements.setAttribute('visible', false);
             }else{
-              console.log(this.measurements)
-              
-              this.visibility = true;
+              this.measurements.setAttribute('visible', true);
             }
             
           })
@@ -397,6 +392,9 @@
       });
       infoButton.addEventListener('click', ()=>{
         gltf.emit('toggleInfo');
+      })
+      linkButton.addEventListener('click', ()=>{
+        window.open('https://ortopedia.kaldevi.com/producto/silla-de-ruedas-electrica-sorolla/', '_blank');
       })
       
     </script>
