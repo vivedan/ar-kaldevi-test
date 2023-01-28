@@ -225,32 +225,33 @@
           //var tex = new THREE.TextureLoader().load('https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631');
           //tex.flipY = false; // for glTF models.
           // Wait for model to load.
-          /*this.el.addEventListener('model-loaded', () => {
+          this.el.addEventListener('model-loaded', () => {
             // Grab the mesh / scene.
             const obj = this.el.getObject3D('mesh');
             // Go over the submeshes and modify materials we want.
             obj.traverse(node => {
               if(node.isMesh){
+                console.log(node)
                 node.material.shader = 'flat';
-                node.material.color.set('white');
-                node.material.src = '#sorollaTex1';
+                //node.material.color.set('red');
+                node.material.src = new THREE.TextureLoader().load('https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631');
               }
                 
               
             });
-          });*/
+          });
         }
       })
     
     </script>
     
-    <a-scene>
+    <a-scene renderer="colorManagement: true;">
       <a-assets>
         <img id="sorollaTex1" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/SorollaBakeGrey.jpg?v=1674927296631">
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635"></a-asset-item>
       </a-assets>
       
-      <a-gltf-model position="0 1 -2" src="#sorollaAsset" material="shader: flat; color: red;" measurement update-materials></a-gltf-model>
+      <a-gltf-model position="0 1 -2" src="#sorollaAsset" measurement update-materials></a-gltf-model>
       
       <!--<a-entity position="-1 0.5 -3" rotation="0 45 0" measurement-scale>
         <a-box color="#4CC3D9" scale="0.5 1 2"></a-box>
@@ -263,6 +264,7 @@
       </a-entity>
       
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>-->
+      <a-light color="white" position="-1 1 0"></a-light>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
     
