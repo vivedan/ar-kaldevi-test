@@ -246,19 +246,22 @@
             this.measurements.appendChild(title);
             this.measurements.appendChild(subtitle);
 
-            this.visible = false;
+            this.el.appendChild(this.measurements);
+            this.measurements.
             
           })
         },
         update: function(){
           this.el.addEventListener('toggleInfo', ()=>{
-            if(this.visible){
-              console.log(this.el.object3D)
-              this.el.removeObject3D(this.measurements);
-              this.visible = false;
+            if(this.visibility){
+              //console.log(this.measurements)
+              this.measurements.parentNode.removeChild(this.measurements);
+              this.visibility = false;
+              console.log(this.visibility);
             }else{
-              this.el.appendChild(this.measurements);
-              this.visible = true;
+              console.log(this.measurements)
+              
+              this.visibility = true;
             }
             
           })
