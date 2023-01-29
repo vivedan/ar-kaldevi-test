@@ -11,6 +11,7 @@ AFRAME.registerComponent('update-materials', {
           this.tex2.flipY = false;
           this.tex3.flipY = false;
           this.matArray = [this.tex1, this.tex2, this.tex3];
+          this.buttonArray = ['https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/Metal%20gris.jpg?v=1674999628130', 'https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/Metal%20naranja.jpg?v=1674999632825', 'https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/Metal%20azul.jpg?v=1674999632285']
           // Wait for model to load.
           this.el.addEventListener('model-loaded', () => {
             // Grab the mesh / scene.
@@ -33,7 +34,7 @@ AFRAME.registerComponent('update-materials', {
         update: function () {
           
           this.el.addEventListener('toggleMaterial', () => {
-            
+            let button = document.getElementById('materialButton');
             // Grab the mesh / scene.
             const obj = this.el.getObject3D('mesh');
             // Go over the submeshes and modify materials we want.
@@ -42,9 +43,11 @@ AFRAME.registerComponent('update-materials', {
                 if(this.matIndex < this.matArray.length -1){
                   this.matIndex += 1;
                   node.material.map = this.matArray[this.matIndex];
+                  button.style.backgroundImage = 'url(' + this.buttonArray[this.matIndex] + ')';
                 }else{
                   this.matIndex = 0;
                   node.material.map = this.matArray[this.matIndex];
+                  button.style.backgroundImage = 'url(' + this.buttonArray[this.matIndex] + ')';
                 }
               }
                 
