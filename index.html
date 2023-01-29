@@ -92,7 +92,7 @@
       let linkButton = document.getElementById('linkButton');
       let scaleButton = document.getElementById('scaleButton');
       
-      let scaled = false;
+      let scaled = 1;
       
       let gltf = document.getElementById('sorolla');
       materialButton.addEventListener('click', ()=>{
@@ -105,12 +105,15 @@
         window.open('https://ortopedia.kaldevi.com/producto/silla-de-ruedas-electrica-sorolla/', '_blank');
       })
       scaleButton.addEventListener('click', ()=>{
-        if(scaled){
+        if(scaled == 1){
           gltf.parentNode.setAttribute('scale', {x: 1, y: 1, z: 1});
-          scaled = false;
-        }else{
+          scaled = 2;
+        }else if(scaled == 2){
           gltf.parentNode.setAttribute('scale', {x: 3, y: 3, z: 3});
-          scaled = true;
+          scaled = 3;
+        }else{
+          gltf.parentNode.setAttribute('scale', {x: 6, y: 6, z: 6});
+          scaled = 1;
         }
         
       })
