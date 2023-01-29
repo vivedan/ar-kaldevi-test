@@ -17,9 +17,10 @@
     <script src="update-materials.js"></script>
     
     
-    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targets.mind?v=1674941868358;  
+    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targetsMulti4.mind?v=1675004642090;  
                            filterMinCF: 10;
-                           filterBeta: 0.000001;" 
+                           filterBeta: 0.000001;
+                           maxTrack: 2;" 
              color-space="sRGB" 
              renderer="colorManagement: true, physicallyCorrectLights" 
              vr-mode-ui="enabled: false" 
@@ -45,6 +46,33 @@
           <a-light type="ambient" color="white"></a-light>
           <a-entity id="plane" position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
         </a-entity>
+      </a-entity>
+      
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-sphere color="red" scale="0.5 0.5 0.5"></a-sphere>
+        <a-light type="point" color="white" position="0 5 0"></a-light>
+          <a-light type="point" color="white" position="-5 0 0"></a-light>
+          <a-light type="point" color="white" position="5 0 0"></a-light>
+          <a-light type="point" color="white" position="0 0 -5"></a-light>
+          <a-light type="ambient" color="white"></a-light>
+      </a-entity>
+      
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-box color="yellow" scale="0.5 0.5 0.5"></a-box>
+        <a-light type="point" color="white" position="0 5 0"></a-light>
+          <a-light type="point" color="white" position="-5 0 0"></a-light>
+          <a-light type="point" color="white" position="5 0 0"></a-light>
+          <a-light type="point" color="white" position="0 0 -5"></a-light>
+          <a-light type="ambient" color="white"></a-light>
+      </a-entity>
+      
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-cone color="green" scale="0.5 0.5 0.5"></a-cone>
+        <a-light type="point" color="white" position="0 5 0"></a-light>
+          <a-light type="point" color="white" position="-5 0 0"></a-light>
+          <a-light type="point" color="white" position="5 0 0"></a-light>
+          <a-light type="point" color="white" position="0 0 -5"></a-light>
+          <a-light type="ambient" color="white"></a-light>
       </a-entity>
       
       
