@@ -27,9 +27,28 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 100;
+  z-index: 200;
   width: 25vw;
   height: auto;
+}
+
+.whitescreen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 150;
+  background: lightgrey;
+  pointer-events: none;
+  animation: fadeout 2s ease-in;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 .noselect {
