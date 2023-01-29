@@ -18,8 +18,8 @@
     
     
     <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targets.mind?v=1674941868358;  
-                           filterMinCF: 1;
-                           filterBeta: 0.001;" 
+                           filterMinCF: 10;
+                           filterBeta: 0.000001;" 
              color-space="sRGB" 
              renderer="colorManagement: true, physicallyCorrectLights" 
              vr-mode-ui="enabled: false" 
@@ -33,7 +33,7 @@
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>
+        <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
         <a-entity position="0 0 0.6" rotation="90 0 0">
           <a-gltf-model id="sorolla" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
 
@@ -65,6 +65,8 @@
       let linkButton = document.getElementById('linkButton');
       let scaleButton = document.getElementById('scaleButton');
       
+      let scaled = false;
+      
       let gltf = document.getElementById('sorolla');
       materialButton.addEventListener('click', ()=>{
         gltf.emit('toggleMaterial')
@@ -74,6 +76,16 @@
       })
       linkButton.addEventListener('click', ()=>{
         window.open('https://ortopedia.kaldevi.com/producto/silla-de-ruedas-electrica-sorolla/', '_blank');
+      })
+      scaleButton.addEventListener('click', ()=>{
+        if(scaled){
+          gltf.parentNode.setAttribute('scale', {x: 1, y: 1, z: 1});
+          scaled = false;
+        }else{
+          gltf.parentNode.setAttribute('scale', {x: 3, y: 3, z: 3});
+          scaled = true;
+        }
+        
       })
       
     </script>
