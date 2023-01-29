@@ -5,16 +5,20 @@
   flex-direction: row;
   bottom: 10px;
   width: 100vw;
-  justify-content: space-around;
-
+  justify-content: center;
+  gap: 15px;
 }  
 
 .button{
   position: relative; 
   top: 0; 
   left: 0; 
-  width: 100px; 
-  height: 100px; 
+  width: 50px; 
+  height: 50px; 
   background: red; 
   cursor: pointer;
+  border-radius: 50%;
+  max-width: 20vw;
+  max-height: 20vw;
+  opacity: 0.8;
 }
