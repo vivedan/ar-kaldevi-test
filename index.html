@@ -17,7 +17,7 @@
     <script src="update-materials.js"></script>
     
     
-    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targetsNew.mind?v=1675018452984;  
+    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targets6.mind?v=1675118101099;  
                            filterMinCF: 10;
                            filterBeta: 0.000001;" 
              color-space="sRGB" 
@@ -47,7 +47,7 @@
         </a-entity>
       </a-entity>
       
-      <!--<a-entity mindar-image-target="targetIndex: 1">
+      <a-entity mindar-image-target="targetIndex: 1">
         <a-sphere color="red" scale="0.5 0.5 0.5"></a-sphere>
         <a-light type="point" color="white" position="0 5 0"></a-light>
           <a-light type="point" color="white" position="-5 0 0"></a-light>
@@ -72,7 +72,37 @@
           <a-light type="point" color="white" position="5 0 0"></a-light>
           <a-light type="point" color="white" position="0 0 -5"></a-light>
           <a-light type="ambient" color="white"></a-light>
-      </a-entity>-->
+      </a-entity>
+      
+      <a-entity mindar-image-target="targetIndex: 4">
+        <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
+        <a-entity position="0 0 0.6" rotation="90 0 0">
+          <a-gltf-model id="sorolla2" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
+
+          <a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
+          <a-light type="point" color="white" position="0 5 0"></a-light>
+          <a-light type="point" color="white" position="-5 0 0"></a-light>
+          <a-light type="point" color="white" position="5 0 0"></a-light>
+          <a-light type="point" color="white" position="0 0 -5"></a-light>
+          <a-light type="ambient" color="white"></a-light>
+          <a-entity position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
+        </a-entity>
+      </a-entity>
+      
+      <a-entity mindar-image-target="targetIndex: 5">
+        <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
+        <a-entity position="0 0 0.6" rotation="90 0 0">
+          <a-gltf-model id="sorolla3" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
+
+          <a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
+          <a-light type="point" color="white" position="0 5 0"></a-light>
+          <a-light type="point" color="white" position="-5 0 0"></a-light>
+          <a-light type="point" color="white" position="5 0 0"></a-light>
+          <a-light type="point" color="white" position="0 0 -5"></a-light>
+          <a-light type="ambient" color="white"></a-light>
+          <a-entity position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
+        </a-entity>
+      </a-entity>
       
       
     </a-scene>
@@ -99,11 +129,17 @@
       let scaled = 1;
       
       let gltf = document.getElementById('sorolla');
+      let gltf2 = document.getElementById('sorolla2');
+      let gltf3 = document.getElementById('sorolla3');
       materialButton.addEventListener('click', ()=>{
-        gltf.emit('toggleMaterial')
+        gltf.emit('toggleMaterial');
+        gltf2.emit('toggleMaterial');
+        gltf3.emit('toggleMaterial');
       });
       infoButton.addEventListener('click', ()=>{
         gltf.emit('toggleInfo');
+        gltf2.emit('toggleInfo');
+        gltf3.emit('toggleInfo');
       })
       linkButton.addEventListener('click', ()=>{
         window.open('https://ortopedia.kaldevi.com/producto/silla-de-ruedas-electrica-sorolla/', '_blank');
@@ -111,12 +147,18 @@
       scaleButton.addEventListener('click', ()=>{
         if(scaled == 1){
           gltf.parentNode.setAttribute('scale', {x: 1, y: 1, z: 1});
+          gltf2.parentNode.setAttribute('scale', {x: 1, y: 1, z: 1});
+          gltf3.parentNode.setAttribute('scale', {x: 1, y: 1, z: 1});
           scaled = 2;
         }else if(scaled == 2){
           gltf.parentNode.setAttribute('scale', {x: 3, y: 3, z: 3});
+          gltf2.parentNode.setAttribute('scale', {x: 3, y: 3, z: 3});
+          gltf3.parentNode.setAttribute('scale', {x: 3, y: 3, z: 3});
           scaled = 3;
         }else{
           gltf.parentNode.setAttribute('scale', {x: 6, y: 6, z: 6});
+          gltf2.parentNode.setAttribute('scale', {x: 6, y: 6, z: 6});
+          gltf3.parentNode.setAttribute('scale', {x: 6, y: 6, z: 6});
           scaled = 1;
         }
         
