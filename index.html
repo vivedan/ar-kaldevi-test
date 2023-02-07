@@ -55,7 +55,7 @@
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635" crossorigin="anonymous"></a-asset-item>
       </a-assets>
       
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <a-entity camera></a-entity>
       
       <a-nft
         type="nft"
@@ -67,7 +67,8 @@
       >
         <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
         <a-entity position="0 0 0.6" rotation="90 0 0">
-          <a-gltf-model id="sorolla" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
+          <a-box></a-box>
+          <!--<a-gltf-model id="sorolla" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
 
           <a-light color="white" position="0 3 0" light="castShadow: true; shadowMapHeight: 1024; shadowMapWidth: 1024;"></a-light>
           <a-light type="point" color="white" position="0 5 0"></a-light>
@@ -75,7 +76,7 @@
           <a-light type="point" color="white" position="5 0 0"></a-light>
           <a-light type="point" color="white" position="0 0 -5"></a-light>
           <a-light type="ambient" color="white"></a-light>
-          <a-entity id="plane" position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
+          <a-entity id="plane" position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>-->
         </a-entity>
       </a-nft>
       
@@ -193,6 +194,11 @@
         }
         
       })
+      
+      window.addEventListener("arjs-nft-loaded", (event) => {
+        // Hide loading overlay
+        console.log('SCAN SCAN SCAN')
+      });
       
     </script>
   </body>
