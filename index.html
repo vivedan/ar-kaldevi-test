@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <!--<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>-->
     
     
@@ -12,19 +12,45 @@
   </head>
   <body>
     
+    <!-- style for the loader -->
+    <style>
+      .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+    </style>
+    
+    <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+    <div class="arjs-loader">
+      <div>Loading, please wait...</div>
+    </div>
+    
     <script src="measurement.js"></script>
     <script src="shadow-material.js"></script>
     <script src="update-materials.js"></script>
     
     <!-- filterMinCF: 10; filterBeta: 0.000001;-->
-    <a-scene mindar-image="imageTargetSrc: https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/targets6.mind?v=1675118101099;  
-                           filterMinCF: 1;
-                           filterBeta: 0.000001;" 
+    <a-scene arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;" 
              color-space="sRGB" 
              renderer="colorManagement: true, physicallyCorrectLights" 
              vr-mode-ui="enabled: false" 
              device-orientation-permission-ui="enabled: false" 
-             shadow="type: pcfsoft">
+             shadow="type: pcfsoft"
+             embedded>
       <a-assets>
         <img id="card" src="https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/Tracker%20Silla.png?v=1674941824262" crossorigin="anonymous"/>
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635" crossorigin="anonymous"></a-asset-item>
@@ -32,7 +58,14 @@
       
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       
-      <a-entity mindar-image-target="targetIndex: 0">
+      <a-nft
+        type="nft"
+        url="<path-to-your-image-descriptors>"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+      >
         <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
         <a-entity position="0 0 0.6" rotation="90 0 0">
           <a-gltf-model id="sorolla" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
@@ -45,9 +78,9 @@
           <a-light type="ambient" color="white"></a-light>
           <a-entity id="plane" position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
         </a-entity>
-      </a-entity>
+      </a-nft>
       
-      <a-entity mindar-image-target="targetIndex: 1">
+      <!--<a-entity mindar-image-target="targetIndex: 1">
         <a-sphere color="red" scale="0.5 0.5 0.5"></a-sphere>
         <a-light type="point" color="white" position="0 5 0"></a-light>
           <a-light type="point" color="white" position="-5 0 0"></a-light>
@@ -75,7 +108,6 @@
       </a-entity>
       
       <a-entity mindar-image-target="targetIndex: 4">
-        <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
         <a-entity position="0 0 0.6" rotation="90 0 0">
           <a-gltf-model id="sorolla2" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
 
@@ -90,7 +122,6 @@
       </a-entity>
       
       <a-entity mindar-image-target="targetIndex: 5">
-        <!--<a-plane id="tracker" src="#card" position="0 0 0" width="1" height="0.645" rotation="0 0 0"></a-plane>-->
         <a-entity position="0 0 0.6" rotation="90 0 0">
           <a-gltf-model id="sorolla3" position="0 0 0" src="#sorollaAsset" shadow="cast: true" measurement update-materials></a-gltf-model>
 
@@ -102,7 +133,7 @@
           <a-light type="ambient" color="white"></a-light>
           <a-entity position="0 -0.5 0" geometry="primitive:plane; width: 2; height: 2" rotation="-90 0 0" shadow="receive: true;" shadow-material></a-entity>
         </a-entity>
-      </a-entity>
+      </a-entity>-->
       
       
     </a-scene>
