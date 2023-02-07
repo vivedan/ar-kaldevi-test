@@ -38,25 +38,25 @@
       <div>Loading, please wait...</div>
     </div>
     
-    <script src="measurement.js"></script>
+    <!--<script src="measurement.js"></script>
     <script src="shadow-material.js"></script>
-    <script src="update-materials.js"></script>
+    <script src="update-materials.js"></script>-->
     
     <!-- filterMinCF: 10; filterBeta: 0.000001;-->
     <a-scene arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;" 
              vr-mode-ui="enabled: false;"
             renderer="logarithmicDepthBuffer: true; precision: medium;"
              embedded>
-      <a-assets>
+      <!--<a-assets>
         <img id="card" src="https://cdn.glitch.global/d53aff98-3990-4126-83f2-4ac2eb8d01da/Tracker%20Silla.png?v=1674941824262" crossorigin="anonymous"/>
         <a-asset-item id="sorollaAsset" src="https://cdn.glitch.global/940e20c3-a1e1-440f-bc42-e14ab5ef4b62/Kaldevi_Sorolla_AR2.glb?v=1674927270635" crossorigin="anonymous"></a-asset-item>
-      </a-assets>
+      </a-assets>-->
       
       <a-entity camera></a-entity>
       
       <a-nft
         type="nft"
-        url="https://cdn.glitch.global/77959200-90fe-47bf-8e7a-1f93c17f89dd/TrackerSilla_new"
+        url="/assets/TrackerSilla_new"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
@@ -149,7 +149,7 @@
     
     <script>
     
-      let materialButton = document.getElementById('materialButton');
+      /*let materialButton = document.getElementById('materialButton');
       let infoButton = document.getElementById('infoButton');
       let linkButton = document.getElementById('linkButton');
       let scaleButton = document.getElementById('scaleButton');
@@ -190,7 +190,7 @@
           scaled = 1;
         }
         
-      })
+      })*/
       
       window.addEventListener("arjs-nft-loaded", (event) => {
         // Hide loading overlay
